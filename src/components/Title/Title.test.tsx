@@ -1,15 +1,15 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Theme from '../../Themes/index';
 import Title from './index';
 
 describe('Title', () => {
     test('Render title', () => {
         render(
-                <Theme>
+            <>
                     <Title/>;
-                </Theme>
+            </>
         );
+        expect(screen.getByText(/Cresça com a Compasso UOL/i)).toBeInTheDocument();
     });
 });

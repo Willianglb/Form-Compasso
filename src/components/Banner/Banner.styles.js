@@ -1,11 +1,25 @@
 import styled from "styled-components"
 
-export const Banner = styled.div`
-    display: block;
-    position: absolute;
+export const Contener = styled.div`
+background: black;
 
-    @media(min-width: 600px){
-        
-    }
+
+  @media(min-width: 600px){
+
+  }
+
+  .slick-dots {
+      position:${props => props.theme.position.absolute};
+      bottom: ${props => props.theme.bottom.bottomFive};
+  }
+  .slick-dots li button:before {
+      font-size:${props => props.theme.fontSizes.fontSizeEighteen};
+  }
+
+`;
+
+export const Img = styled.img`
+max-width: ${props => props.theme.maxWidth.maxWidthHundred};
+height: ${props => props.theme.height.heightForty};
 `;
 

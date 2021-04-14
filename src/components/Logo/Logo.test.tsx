@@ -6,7 +6,7 @@ import Logo from './index.js';
 describe('Logo', () => {
     test('Render Logo', () => {
         render(
-            <Logo />
+            <Logo/>
         );
     });
 });
