@@ -1,8 +1,12 @@
 import styled from "styled-components";
+import FormCadastro from "./index";
 
 export const Box = styled.div`
 heigth: "auto";
 width: "auto";
+`;
+
+export const Select = styled.div`
 `;
 
 export const ButtonTr = styled.button`
@@ -29,7 +33,7 @@ export const Form = styled.form`
     border-radius: 3px;
 
     @media(min-width: 600px){
-        margin-top: -60px;
+        margin-top: 0px;
     }
 `;
 

@@ -1,28 +1,14 @@
 import React, {useState, useContext} from 'react';
-import DataContext from '../Store/DataContext'
+import Context, { appContext } from '../../components/Store/Context';
 import * as S from './Form.styles';
 import { useForm } from "react-hook-form";
 import { button } from '@storybook/addon-knobs';
 
-function initialState() {
-    return { email: '', senha: ''};
-}
-
 const Form = (props) => {
-    const variavel = useContext(DataContext);
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
+    const {nome, email, senha, setNome, setEmail, setSenha, select} = useContext(appContext);
     const [bordeEmail, setbordeEMail] = useState();
     const [bordeSenha, setbordeSenha] = useState();
     const { formState: { errors } } = useForm();
-    
-    function Troca(delta) {
-        variavel.setState({
-        ...variavel.state,
-        email: variavel.state.email = email,
-        senha: variavel.state.senha = senha
-        })
-    }
 
     function validar() {
         if (email.length > 0) {
@@ -67,7 +53,7 @@ const Form = (props) => {
                 required
                 placeholder="Seu Email"
                 onChange={(event) => {
-                    setEmail(variavel.state.email);
+                    setEmail(event.target.value);
                 }}
                 onBlur={() => {
                     validar();
@@ -86,7 +72,8 @@ const Form = (props) => {
                 value={senha}
                 type="password"
                 onChange={(event) => {
-                    setSenha(variavel.state.senha);
+                    setSenha(event.target.value);
+
                 }}
                 onBlur={() => {
                     validar();

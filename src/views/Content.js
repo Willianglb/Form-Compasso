@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Login from '../pages/Login/Login';
 import Cadastro from '../pages/Cadastro/Cadastro';
 import Theme from '../Themes/index';
-import DataContext, {data} from '../components/Store/DataContext';
+import Context, {appContext} from '../components/Store/Context';
 
 const Content = props => {
-    const [state, setState] = useState(data);
+    const {nome, email, senha} = useContext(appContext);
+    console.log(nome, email, senha)
     
     return (
         
     <main className="Content">
-        <DataContext.Provider value={{state, setState}}>
+        <Context>
             <Switch>
                 <Route path="/login">
                     <Theme>
@@ -24,7 +25,7 @@ const Content = props => {
                     </Theme>
                 </Route>
             </Switch>
-        </DataContext.Provider>
+        </Context>
     </main>
 
     )

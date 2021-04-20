@@ -1,31 +1,16 @@
 import React, {useState, useContext} from 'react';
-import DataContext from '../Store/DataContext'
-import * as S from '../Form/Form.styles';
+import Context, { appContext } from '../../components/Store/Context';
+import * as S from './FormCadastro.styles';
 import { useForm } from "react-hook-form";
-import { button } from '@storybook/addon-knobs';
-
-function initialState() {
-    return { nome: '', email: '', senha: ''};
-}
+import { button, number, select } from '@storybook/addon-knobs';
 
 const FormCadastro = (props) => {
-    const variavel = useContext(DataContext);
-    const [nome, setNome] = useState(initialState);
-    const [email, setEmail] = useState(initialState);
-    const [senha, setSenha] = useState(initialState);
+    const {nome, email, senha, setNome, setEmail, setSenha} = useContext(appContext);
+    const {tema} = useState();
     const [bordeEmail, setbordeEMail] = useState();
     const [bordeSenha, setbordeSenha] = useState();
     const [bordeNome, setbordeNome] = useState();
     const { formState: { errors } } = useForm();
-    
-    function Troca() {
-        variavel.setState({
-        ...variavel.state,
-        nome: variavel.state.nome,
-        email: variavel.state.email,
-        senha: variavel.state.senha
-        })
-    }
 
     function validar() {
         if (email.length > 0) {
@@ -65,11 +50,22 @@ const FormCadastro = (props) => {
         <S.Box>
             <S.Form onSubmit={(event) => {
                 event.preventDefault();
-                props.aoEnviar({ nome , email, senha })
+                props.aoEnviar({ nome, email, senha })
                 setSenha("");
                 setEmail("");
                 setNome("");
+                
             }}>
+                <S.Select onChange={(event) => {
+                    event.preventDefault();
+                    props.enviarTema({tema})
+                }}>
+                <select name="select" onChange >
+                    <option value="cinza">Cinza</option>
+                    <option value="preto">Preto</option>
+                    <option value="azul">Azul</option>
+                </select>
+                </S.Select>
 
                 <S.InputTitulo>Cadastro</S.InputTitulo>
                 <S.Label>Nome completo</S.Label>
@@ -79,7 +75,7 @@ const FormCadastro = (props) => {
                 required
                 placeholder="Seu Nome"
                 onChange={(event) => {
-                    setNome(variavel.state.nome);
+                    setNome(event.target.value);
                 }}
                 onBlur={() => {
                     validar();
@@ -99,7 +95,7 @@ const FormCadastro = (props) => {
                 required
                 placeholder="Seu Email"
                 onChange={(event) => {
-                    setEmail(variavel.state.email);
+                    setEmail(event.target.value);
                 }}
                 onBlur={() => {
                     validar();
@@ -118,7 +114,7 @@ const FormCadastro = (props) => {
                 value={senha}
                 type="password"
                 onChange={(event) => {
-                    setSenha(variavel.state.senha);
+                    setSenha(event.target.value);
 
                 }}
                 onBlur={() => {

@@ -2,7 +2,8 @@ import styled from "styled-components"
 
 export const Contener = styled.div`
 background: black;
-
+border: 2px solid palevioletred;
+border-radius: 3px;
 
   @media(min-width: 600px){
 

@@ -1,17 +1,10 @@
-# Getting Started with Create React App
+## Compasso - Fase de Shadow - React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+O Projeto trata-se de aplicações direcionadas ao aprendizado de linguagens e bibliotecas, na obtenção de suprir com todos os requisitos para entrar no projeto da Drogaria Raia como Desenvolvedor - React.
 
-## Compasso - Gerenciamento de Usuários
+Utilização de React, TypeScript, Hooks, Testes unitários, Desing Tokens, Styled Component, Grid, Storybook, entre outros.
 
-O Projeto trata-se de uma API de gerenciamento de usuários, utilizando CRUD
-
-Para inicializar o projeto, é necessário inicializar um container no Docker:
-
-### docker run -p 8090:8090 valdenirsantana/spring-api-alunos-bolsas:0.0.1-SNAPSHOT
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## - x - ##
 
 Deve-se instalar as dependências do projeto digitando:
 
@@ -22,11 +15,6 @@ Logo após pode inicializar o projeto digitando:
 Open http://localhost:3000 to view it in the browser)
 
 ### yarn start
-
-Login e Senha para testar o projeto:
-
-### "usuario": "claudio.peixoto"
-### "senha": "00000006"
 
 ## Learn More
 

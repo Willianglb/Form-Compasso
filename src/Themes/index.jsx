@@ -5,9 +5,11 @@ import { ThemeProvider } from "styled-components";
 const theme = {
   colors: {
     white: "#FFF",
-    veryGarkGray: "#707070",
+    cinza: "#707070",
+    preto:"#000000",
+    azul: "blue",
+    verde: "green",
     GrayishCyan: "#a9c5bc",
-    black:"#000000",
     red:"#ff0000",
     rose: "#ff6666",
   },

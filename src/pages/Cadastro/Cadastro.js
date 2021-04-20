@@ -1,33 +1,43 @@
 import React, {useContext, useState} from 'react';
-import DataContext from '../../components/Store/DataContext';
+import Store, { appContext } from '../../components/Store/Context';
 import Logo from '../../components/Logo/index';
 import Banner from '../../components/Banner/index';
-import Title from '../../components/Title/index';
-import Button from '../../components/Button/index';
+import Footer from '../../components/Footer/index';
 import FormCadastro from '../../components/FormCadastro/index';
 import * as S from './HomeCadastro.styles.js';
 
 const PagesCadastro = () => {
-  const variavel = useContext(DataContext);
+  const {nome, email, senha} = useContext(appContext);
+
+  function callAlert() {
+    alert('teste')
+    console.log('callalert');
+  }
 
   return (
     <>
+    <S.Alert>
       <Logo />
-      <S.Home>
+      <S.Home onClick={() => callAlert}>
       <S.Grid1><Banner /></S.Grid1>
-      <S.Grid2><FormCadastro aoEnviar={aoEnviarForm}/></S.Grid2>
+      <S.Grid2>
+      <FormCadastro onSubmit={aoEnviarForm}/> 
+      </S.Grid2>
       <S.Grid3>
-        nome: {variavel.state.nome} <br></br>
-        email: {variavel.state.email}<br></br>
-        senha: {variavel.state.senha}<br></br>
+      <S.H>Ultimo Usuário Cadastrado:</S.H> <br></br>
+        Nome: "{nome}" <br></br>
+        Email: "{email}"<br></br>
+        Senha: "{senha}"<br></br>
       </S.Grid3>
       </S.Home>
+      <Footer />
+    </S.Alert>
     </>
   );
-  };
 
   function aoEnviarForm(dados) {
     console.log(dados);
   }
+  };
 
 export default PagesCadastro;
