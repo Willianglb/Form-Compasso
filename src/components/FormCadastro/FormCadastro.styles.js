@@ -1,10 +1,4 @@
 import styled from "styled-components";
-import FormCadastro from "./index";
-
-export const Box = styled.div`
-heigth: "auto";
-width: "auto";
-`;
 
 export const Select = styled.div`
 `;
@@ -20,7 +14,7 @@ border: 2px solid palevioletred;
 border-radius: 3px;
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
     display: ${props => props.theme.display.displayGrid};
     font-size:${props => props.theme.fontSizes.fontSizeTwoFive};
     font-family : ${props => props.theme.fonts.avenir};
@@ -60,7 +54,7 @@ font-size: ${props => props.theme.fontSizes.fontSizeNano}
     padding-top: 10px;
 `;
 
-export const InputTitulo = styled.label`
+export const LabelTitulo = styled.label`
     font-size: 2.25em;
     padding: 10px 0 5px 0;
     text-align: center;

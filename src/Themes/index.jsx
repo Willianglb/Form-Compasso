@@ -1,5 +1,4 @@
 import React from "react";
-import { GridColumn, GridRow } from "semantic-ui-react";
 import { ThemeProvider } from "styled-components";
 
 const theme = {

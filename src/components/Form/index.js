@@ -1,11 +1,12 @@
 import React, {useState, useContext} from 'react';
 import Context, { appContext } from '../../components/Store/Context';
 import * as S from './Form.styles';
+import InputForm from '../InputForm/index';
 import { useForm } from "react-hook-form";
 import { button } from '@storybook/addon-knobs';
 
 const Form = (props) => {
-    const {nome, email, senha, setNome, setEmail, setSenha, select} = useContext(appContext);
+    const {email, senha, setEmail, setSenha} = useContext(appContext);
     const [bordeEmail, setbordeEMail] = useState();
     const [bordeSenha, setbordeSenha] = useState();
     const { formState: { errors } } = useForm();
@@ -45,6 +46,25 @@ const Form = (props) => {
             }}>
 
             <S.InputTitulo>Login</S.InputTitulo>
+
+            <InputForm
+                    value={email}
+                    config={{
+                        label: 'Email',
+                        type: 'email',
+                        placeholder: 'Seu Email',
+                        errors: errors.email,
+                    }}
+                    onChange={(event) => {
+                        setEmail(event.target.value);
+                    }}
+                    variant="outlined"
+                    />
+                    {errors.email && (
+                    <div className='errorBox'>
+                    <label className='errorLabel'>{errors.email?.types?.message}</label>
+                    </div>
+                )}
 
                 <S.Label>Email</S.Label>
                 <S.Input isActive={bordeEmail}

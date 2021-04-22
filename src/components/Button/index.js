@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import * as S from './Button.styles';
+import ButtonStyles from './Button.styles';
 
 export interface InfoButton {
     id: number;
@@ -7,20 +7,28 @@ export interface InfoButton {
     alt: string;
 };
 
-const Button = () => {
+const Button = React.forwardRef((props, ref) => {
     const [ checked, setChecked ] = useState(false)
+    const { onChange, children } = props;
+    const { id, name = id, label, type, errors } = props.config;
 
     return (
         <>
-        <S.Box>
-        <S.Button 
-        type="button1"
-        onClick={() => setChecked(!checked)
-        } >Clique</S.Button>
-        { checked ? <S.Label>ON</S.Label> : null }
-        </S.Box>
+        <ButtonStyles {...props} errors={errors} className='inputForm'>
+        <input 
+                id={id}
+                type={type}
+                name={name}
+                ref={ref}
+                onChange={onChange}
+                {...props.config}
+            onClick={() => setChecked(!checked)} 
+        > Enviar </input>
+        { checked ? <label htmlFor={id}>{label}</label> : null }
+        {children}
+        </ButtonStyles>
         </>
     )
-};
+});
 
 export default Button;

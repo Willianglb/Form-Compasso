@@ -1,78 +1,103 @@
-import React, {useState, useContext} from 'react';
-import Context, { appContext } from '../../components/Store/Context';
+import React, { useContext } from 'react';
+import { appContext } from '../../components/Store/Context';
 import * as S from './FormCadastro.styles';
+import InputForm from '../InputForm/index';
+import Button from '../Button/index';
+import LabelTitulo from '../LabelTitulo/index';
+import FormBase from '../FormBase/index';
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { button, number, select } from '@storybook/addon-knobs';
 
-const schema = yup.object().shape({
-    nome: yup.string().required("O campo nome é obrigatório."),
-    email: yup.string().email().required("O campo email é obrigatório."),
-    senha: yup.string().required("O campo senha é obrigatório.")
-});
+const FormCadastro = () => {
+    const {nome, email, senha, setNome, setEmail, setSenha} = useContext(appContext);
 
-const FormCadastro = (props) => {
-    const {nome, email, senha} = useContext(appContext);
+    const schema = yup.object().shape({
+        nome: yup.string().required("O campo nome é obrigatório."),
+        email: yup.string().email().required("O campo email é obrigatório."),
+        senha: yup.string().required("O campo senha é obrigatório.")
+    });
 
     const { register, handleSubmit, formState: { errors }} = useForm({
         resolver: yupResolver(schema)
     });
 
-    const onSubmit = (data) => console.log(data);
-
     return (
-        <>
-        <S.Box>
-            <S.Form onSubmit={handleSubmit(onSubmit)}>
-                <S.InputTitulo>Cadastro</S.InputTitulo>
-                <S.Label>Nome completo</S.Label>
-                <S.Input
-                    {...register("nome")}
+            <S.Form onSubmit={handleSubmit((d) => console.log(d))}>
+                <LabelTitulo 
+                config={{
+                    label: 'Cadastro'
+                }}
+                />
+                <InputForm
+                    name="nome"
+                    ref={register}
                     value={nome}
-                    type="text"
+                    config={{
+                        label: 'Nome',
+                        type: 'name',
+                        placeholder: 'Nome',
+                        errors: errors.nome,
+                    }}
+                    onChange={(event) => {
+                        setNome(event.target.value);
+                    }}
                     required
-                    placeholder="Seu Nome"
-                    variant="outlined"
-                    margin="normal"
-                    fullWidth
-                />
-                {errors.nome?.message}
+                    />
+                    {errors.nome && (
+                    <div className='errorBox'>
+                    <label className='errorLabel'>{errors.nome?.types?.message}</label>
+                    </div>
+                )}
 
-                <S.Label>Email</S.Label>
-                <S.Input
-                    {...register("email")}
+                <InputForm
+                    name="email"
+                    ref={register}
                     value={email}
-                    type="email"
-                    required
-                    placeholder="Seu Email"
-                    id="email"
-                    label="email"
-                    variant="outlined"
-                    margin="normal"
-                    fullWidth
-                />
-                {errors.email?.message}
+                    config={{
+                        label: 'Email',
+                        type: 'email',
+                        placeholder: 'Email',
+                        errors: errors.email,
+                    }}
+                    onChange={(event) => {
+                        setEmail(event.target.value);
+                    }}
+                    />
+                    {errors.email && (
+                    <div className='errorBox'>
+                    <label className='errorLabel'>{errors.email?.types?.message}</label>
+                    </div>
+                )}
 
-                <S.Label>Senha</S.Label>
-                <S.Input
-                    {...register("senha")}
+                <InputForm
+                    name="senha"
+                    ref={register}
                     value={senha}
-                    type="password"
-                    id="password"
-                    required
-                    placeholder="Sua senha"
-                    label="password"
-                    variant="password"
-                    margin="password"
-                    fullWidth
-                />
-                {errors.senha?.message}
+                    config={{
+                        label: 'Senha',
+                        type: 'password',
+                        placeholder: 'Senha',
+                        errors: errors.senha,
+                    }}
+                    onChange={(event) => {
+                        setSenha(event.target.value);
+                    }}
+                    />
+                    {errors.senha && (
+                    <div className='errorBox'>
+                    <label className='errorLabel'>{errors.senha?.types?.message}</label>
+                    </div>
+                )}
                 
-                <S.InputButton type="submit" variant="contained" />
+                <Button
+                variant="contained"
+                config={{
+                    label: 'Enviado'
+                }} 
+                />
             </S.Form>
-        </S.Box>
-        </>
     );
 };
 
