@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react';
-import Store, { appContext } from '../../components/Store/Context';
+import React, {useContext} from 'react';
+import { appContext } from '../../components/Store/Context';
 import Logo from '../../components/Logo/index';
 import Banner from '../../components/Banner/index';
 import Footer from '../../components/Footer/index';
@@ -18,26 +18,20 @@ const PagesCadastro = () => {
     <>
     <S.Alert>
       <Logo />
-      <S.Home onClick={() => callAlert}>
-      <S.Grid1><Banner /></S.Grid1>
-      <S.Grid2>
-      <FormCadastro onSubmit={aoEnviarForm}/> 
-      </S.Grid2>
-      <S.Grid3>
-      <S.H>Ultimo Usuário Cadastrado:</S.H> <br></br>
-        Nome: "{nome}" <br></br>
-        Email: "{email}"<br></br>
-        Senha: "{senha}"<br></br>
-      </S.Grid3>
-      </S.Home>
+        <S.Home onClick={() => callAlert}>
+          <S.Grid1><Banner/></S.Grid1>
+          <S.Grid2><FormCadastro/></S.Grid2>
+          <S.Grid3>
+            <S.H>Ultimo Usuário Cadastrado:</S.H> <br></br>
+              Nome: "{nome}" <br></br>
+              Email: "{email}"<br></br>
+              Senha: "{senha}"<br></br>
+          </S.Grid3>
+        </S.Home>
       <Footer />
     </S.Alert>
     </>
   );
-
-  function aoEnviarForm(dados) {
-    console.log(dados);
-  }
   };
 
 export default PagesCadastro;

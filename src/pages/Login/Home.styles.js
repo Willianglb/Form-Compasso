@@ -48,7 +48,7 @@ border-radius: 10px;
 @media(min-width: 600px){
     grid-column: 2;
     grid-row: 2;
-    margin-top: -215px;
+    margin-top: -150px;
 }`;
 
 export const H = styled.label`

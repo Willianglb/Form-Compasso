@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Login from '../pages/Login/Login';
 import Cadastro from '../pages/Cadastro/Cadastro';
@@ -10,24 +10,22 @@ const Content = props => {
     console.log(nome, email, senha)
     
     return (
-        
-    <main className="Content">
-        <Context>
-            <Switch>
-                <Route path="/login">
-                    <Theme>
-                        <Login />
-                    </Theme>
-                </Route>
-                <Route exact path="/">
-                    <Theme>
-                        <Cadastro />
-                    </Theme>
-                </Route>
-            </Switch>
-        </Context>
-    </main>
-
+        <main className="Content">
+            <Context>
+                <Switch>
+                    <Route path="/login">
+                        <Theme>
+                            <Login />
+                        </Theme>
+                    </Route>
+                    <Route exact path="/">
+                        <Theme>
+                            <Cadastro />
+                        </Theme>
+                    </Route>
+                </Switch>
+            </Context>
+        </main>
     )
 };
 

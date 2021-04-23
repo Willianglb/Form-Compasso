@@ -1,64 +1,48 @@
 import React, {useState, useContext} from 'react';
 import Context, { appContext } from '../../components/Store/Context';
-import * as S from './Form.styles';
 import InputForm from '../InputForm/index';
+import LabelTitulo from '../LabelTitulo/index';
+import Button from '../Button/index';
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
 import { button } from '@storybook/addon-knobs';
+import './styleForm.css';
 
-const Form = (props) => {
+const schema = yup.object().shape({
+    email: yup.string().email().required("O campo email é obrigatório."),
+    senha: yup.string().required("O campo senha é obrigatório.")
+});
+
+const FormLogin = () => {
     const {email, senha, setEmail, setSenha} = useContext(appContext);
-    const [bordeEmail, setbordeEMail] = useState();
-    const [bordeSenha, setbordeSenha] = useState();
-    const { formState: { errors } } = useForm();
-
-    function validar() {
-        if (email.length > 0) {
-            setbordeEMail(false);
-        }
-        else {
-            setbordeEMail(true);
-
-        }
-
-        if (senha.length > 5) {
-            setbordeSenha(false);
-        } 
-        else {
-            setbordeSenha(true);
-        }
-    }
-
-
-    function validateEmail(email) {
-        var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-        if (reg.test(email)) {
-    }
-}
+    const { register, handleSubmit, formState: { errors }} = useForm({
+        resolver: yupResolver(schema),
+    });
     
     return (
         <>
-        <S.Box>
-            <S.Form onSubmit={(event) => {
-                event.preventDefault();
-                props.aoEnviar({ email, senha })
-                setSenha("");
-                setEmail("");
-            }}>
+            <form onSubmit={handleSubmit((d) => console.log(d))} >
 
-            <S.InputTitulo>Login</S.InputTitulo>
+            <LabelTitulo 
+                config={{
+                    label: 'Login'
+                }}
+                />
 
             <InputForm
-                    value={email}
                     config={{
                         label: 'Email',
                         type: 'email',
-                        placeholder: 'Seu Email',
+                        placeholder: 'Email',
+                        name: 'email',
+                        ref: register,
+                        onChange: (event) => {
+                            setEmail(event.target.value);
+                        },
+                        value: email,
                         errors: errors.email,
                     }}
-                    onChange={(event) => {
-                        setEmail(event.target.value);
-                    }}
-                    variant="outlined"
                     />
                     {errors.email && (
                     <div className='errorBox'>
@@ -66,53 +50,36 @@ const Form = (props) => {
                     </div>
                 )}
 
-                <S.Label>Email</S.Label>
-                <S.Input isActive={bordeEmail}
-                value={email}
-                type="email"
-                required
-                placeholder="Seu Email"
-                onChange={(event) => {
-                    setEmail(event.target.value);
-                }}
-                onBlur={() => {
-                    validar();
-                    validateEmail(email);
-                }}
-                id="email"
-                label="email"
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                />
-                {errors.email && <p>Insira seu sobrenome</p>}
-
-                <S.Label>Senha</S.Label>
-                <S.Input isActive={bordeSenha}
-                value={senha}
-                type="password"
-                onChange={(event) => {
-                    setSenha(event.target.value);
-
-                }}
-                onBlur={() => {
-                    validar();
-                }}
-                id="password"
-                required
-                placeholder="Sua senha"
-                label="password"
-                variant="password"
-                margin="password"
-                fullWidth
-                />
-                {errors.senha && <p>Insira sua senha, por favor.</p>}
+                <InputForm
+                    config={{
+                        label: 'Senha',
+                        type: 'password',
+                        placeholder: 'Senha',
+                        name: 'senha',
+                        ref: register,
+                        onChange: (event) => {
+                            setSenha(event.target.value);
+                        },
+                        value: senha,
+                        errors: errors.senha,
+                    }}
+                    />
+                    {errors.senha && (
+                    <div className='errorBox'>
+                    <label className='errorLabel'>{errors.senha?.types?.message}</label>
+                    </div>
+                )}
                 
-                <S.InputButton type="submit" variant="contained" />
-            </S.Form>
-        </S.Box>
+                <Button
+                config={{
+                    label: 'Enviado',
+                    type: "submit",
+                    erros: errors.button,
+                }} 
+                />
+            </form>
         </>
     );
 };
 
-export default Form;
+export default FormLogin;

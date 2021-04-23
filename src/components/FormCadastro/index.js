@@ -1,49 +1,51 @@
 import React, { useContext } from 'react';
 import { appContext } from '../../components/Store/Context';
-import * as S from './FormCadastro.styles';
 import InputForm from '../InputForm/index';
 import Button from '../Button/index';
 import LabelTitulo from '../LabelTitulo/index';
-import FormBase from '../FormBase/index';
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { button, number, select } from '@storybook/addon-knobs';
+import './styleForm.css';
+
+const schema = yup.object().shape({
+    nome: yup.string().required("O campo nome é obrigatório."),
+    email: yup.string().email().required("O campo email é obrigatório."),
+    senha: yup.string().required("O campo senha é obrigatório.")
+});
 
 const FormCadastro = () => {
     const {nome, email, senha, setNome, setEmail, setSenha} = useContext(appContext);
 
-    const schema = yup.object().shape({
-        nome: yup.string().required("O campo nome é obrigatório."),
-        email: yup.string().email().required("O campo email é obrigatório."),
-        senha: yup.string().required("O campo senha é obrigatório.")
-    });
-
     const { register, handleSubmit, formState: { errors }} = useForm({
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schema),
     });
 
     return (
-            <S.Form onSubmit={handleSubmit((d) => console.log(d))}>
-                <LabelTitulo 
-                config={{
-                    label: 'Cadastro'
-                }}
+            <form 
+            onSubmit={handleSubmit((d) => console.log(d))}
+            >
+
+                <LabelTitulo
+                    config={{
+                        label: 'Cadastro'
+                    }}
                 />
+
                 <InputForm
-                    name="nome"
-                    ref={register}
-                    value={nome}
                     config={{
                         label: 'Nome',
                         type: 'name',
                         placeholder: 'Nome',
+                        name: 'nome',
+                        ref: register,
+                        onChange: (event) => {
+                            setNome(event.target.value);
+                        },
+                        value: nome,
                         errors: errors.nome,
                     }}
-                    onChange={(event) => {
-                        setNome(event.target.value);
-                    }}
-                    required
                     />
                     {errors.nome && (
                     <div className='errorBox'>
@@ -52,17 +54,17 @@ const FormCadastro = () => {
                 )}
 
                 <InputForm
-                    name="email"
-                    ref={register}
-                    value={email}
                     config={{
                         label: 'Email',
                         type: 'email',
                         placeholder: 'Email',
+                        name: 'email',
+                        ref: register,
+                        onChange: (event) => {
+                            setEmail(event.target.value);
+                        },
+                        value: email,
                         errors: errors.email,
-                    }}
-                    onChange={(event) => {
-                        setEmail(event.target.value);
                     }}
                     />
                     {errors.email && (
@@ -72,17 +74,17 @@ const FormCadastro = () => {
                 )}
 
                 <InputForm
-                    name="senha"
-                    ref={register}
-                    value={senha}
                     config={{
                         label: 'Senha',
                         type: 'password',
                         placeholder: 'Senha',
+                        name: 'senha',
+                        ref: register,
+                        onChange: (event) => {
+                            setSenha(event.target.value);
+                        },
+                        value: senha,
                         errors: errors.senha,
-                    }}
-                    onChange={(event) => {
-                        setSenha(event.target.value);
                     }}
                     />
                     {errors.senha && (
@@ -92,12 +94,13 @@ const FormCadastro = () => {
                 )}
                 
                 <Button
-                variant="contained"
                 config={{
-                    label: 'Enviado'
+                    label: 'Enviado',
+                    type: "submit",
+                    erros: errors.button,
                 }} 
                 />
-            </S.Form>
+            </form>
     );
 };
 

@@ -14,24 +14,18 @@ const showErrorIcon = (props) => css`
  }
 `;
  
-const ButtonStyles = styled.input`
-    width: auto;
+const ButtonStyles = styled.div`
+    display: ${props => props.theme.display.displayGrid};
     position: relative;
-    flex: 1;
-    > div {
-    display: flex;
-    flex-direction: row;
     align-items: center;
     ${(props) => props.errors && showErrorIcon(props)};
-    margin: 8px 0;
-    }
     
     button {
-        font-size: ${props => props.theme.fontSizes.fontSizeNano}
-        padding: 10px 0 5px 7%;
-        text-align: ${props => props.theme.textAlign.textAlignLeft};
-        color: white;
-        padding-top: 10px;
+        margin: 25px 0 10px 10px;
+        padding: 1em;
+        background-color: palevioletred;
+        color: black;
+        width: ${props => props.theme.width.auto};
     }
 `;
 
