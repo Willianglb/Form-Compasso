@@ -11,7 +11,7 @@ import './styleForm.css';
 
 const schema = yup.object().shape({
     email: yup.string().email().required("O campo email é obrigatório."),
-    senha: yup.string().required("O campo senha é obrigatório.")
+    senha: yup.string().min(2).required("O campo senha é obrigatório.")
 });
 
 const FormLogin = () => {
@@ -19,7 +19,6 @@ const FormLogin = () => {
     const { register, handleSubmit, formState: { errors }} = useForm({
         resolver: yupResolver(schema),
     });
-    
     return (
         <>
             <form onSubmit={handleSubmit((d) => console.log(d))} >
@@ -46,7 +45,7 @@ const FormLogin = () => {
                     />
                     {errors.email && (
                     <div className='errorBox'>
-                    <label className='errorLabel'>{errors.email?.types?.message}</label>
+                    <label className='errorLabel'>{errors.email.message}</label>
                     </div>
                 )}
 
@@ -66,7 +65,7 @@ const FormLogin = () => {
                     />
                     {errors.senha && (
                     <div className='errorBox'>
-                    <label className='errorLabel'>{errors.senha?.types?.message}</label>
+                    <label className='errorLabel'>{errors.senha.message}</label>
                     </div>
                 )}
                 
