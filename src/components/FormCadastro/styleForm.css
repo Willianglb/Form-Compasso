@@ -4,10 +4,25 @@ form {
     font-family: avenir;
     letter-spacing: 0px;
     font-weight: bold;
-    background: #707070;
     color: palevioletred;
     padding: 0.5em 1em;
     border: 2px solid palevioletred;
     border-radius: 3px;
     width: auto;
+}
+
+.Grey {
+    background: #707070;
+}
+
+.Green{
+    background: #486b48;
+}
+
+.Blue{
+    background: #3a6080;
+}
+
+.Yellow{
+    background: #b4b646;
 }

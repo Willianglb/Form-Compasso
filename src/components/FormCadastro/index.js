@@ -15,16 +15,29 @@ const schema = yup.object().shape({
     senha: yup.string().required("O campo senha é obrigatório.")
 });
 
-const FormCadastro = () => {
+const FormCadastro = (props) => {
     const {nome, email, senha, setNome, setEmail, setSenha} = useContext(appContext);
 
     const { register, handleSubmit, formState: { errors }} = useForm({
         resolver: yupResolver(schema),
     });
 
+        function getColor(props){
+            console.log(props.variavel)
+        if(props.variavel == 'grey')
+        return "Grey"
+        if(props.variavel == 'green')
+        return "Green"
+        if(props.variavel == 'blue')
+        return "Blue"
+        if(props.variavel == 'yellow')
+        return "Yellow"
+        }
+
     return (
-            <form 
+            <form
             onSubmit={handleSubmit((d) => console.log(d))}
+            className={`Card ${getColor(props)}`}
             >
 
                 <LabelTitulo
