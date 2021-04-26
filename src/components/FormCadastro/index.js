@@ -62,7 +62,7 @@ const FormCadastro = (props) => {
                     />
                     {errors.nome && (
                     <div className='errorBox'>
-                    <label className='errorLabel'>{errors.nome?.types?.message}</label>
+                    <label className='errorLabel'>{errors.nome.message}</label>
                     </div>
                 )}
 
@@ -82,7 +82,7 @@ const FormCadastro = (props) => {
                     />
                     {errors.email && (
                     <div className='errorBox'>
-                    <label className='errorLabel'>{errors.email?.types?.message}</label>
+                    <label className='errorLabel'>{errors.email.message}</label>
                     </div>
                 )}
 
@@ -102,7 +102,7 @@ const FormCadastro = (props) => {
                     />
                     {errors.senha && (
                     <div className='errorBox'>
-                    <label className='errorLabel'>{errors.senha?.types?.message}</label>
+                    <label className='errorLabel'>{errors.senha.message}</label>
                     </div>
                 )}
                 
