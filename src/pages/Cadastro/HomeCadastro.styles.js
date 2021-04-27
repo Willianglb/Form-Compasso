@@ -40,18 +40,29 @@ margin-left: 80px;
 margin-right: 80px;
 font-size:${props => props.theme.fontSizes.fontSizeNano};
 font-family : ${props => props.theme.fonts.avenir};
-color: ${props => props.theme.colors.palevioletred};
 text-align: center;
-background: palevioletred;
+background: ${
+    function getColor(props){
+        console.log(props.variavel)
+    if(props.variavel == 'grey')
+    return "#707070"
+    if(props.variavel == 'green')
+    return "#486b48"
+    if(props.variavel == 'blue')
+    return "#3a6080"
+    if(props.variavel == 'yellow')
+    return "#b4b646"
+    }
+};
 padding: 0.5em 1em;
-border: 3px solid black;
-border-radius: 10px;
+border: 2px solid palevioletred;
+border-radius: 8px;
 
 
 @media(min-width: 600px){
     grid-column: 1;
     grid-row: 2;
-    margin-top: -70px;
+    margin-top: -60px;
 }`;
 
 export const H = styled.label`

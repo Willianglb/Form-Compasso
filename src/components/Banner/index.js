@@ -38,7 +38,7 @@ export default class SimpleSlider extends Component {
             },
         ]
         return (
-            <S.Contener >
+            <S.Contener>
                 <Slider {...settings}>
                     {photos.map((photo) => {
                         return (

@@ -39,7 +39,7 @@ const PagesCadastro = () => {
         <S.Grid2>
           <FormCadastro variavel={selectValue}/>
         </S.Grid2>
-          <S.Grid3>
+          <S.Grid3 variavel={selectValue}>
             <S.H> Testando o Context:</S.H> <br></br>
               Nome: "{nome}" <br></br>
               Email: "{email}"<br></br>
