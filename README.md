@@ -8,7 +8,7 @@ Utilização de React, TypeScript, Hooks, Testes unitários, Desing Tokens, Styl
 
 Deve-se instalar as dependências do projeto digitando:
 
-### yarn install
+### npm i
 
 Logo após pode inicializar o projeto digitando:
 (Runs the app in the development mode.
