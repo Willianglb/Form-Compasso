@@ -11,10 +11,10 @@ Deve-se instalar as dependências do projeto digitando:
 ### npm i
 
 Logo após pode inicializar o projeto digitando:
-(Runs the app in the development mode.
-Open http://localhost:3000 to view it in the browser)
 
 ### yarn start
+(Runs the app in the development mode.
+Open http://localhost:3000 to view it in the browser)
 
 ## Learn More
 
